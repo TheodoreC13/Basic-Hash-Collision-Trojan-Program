@@ -1,0 +1,49 @@
+> this file is edited to remove usernames for github.
+
+[t@zeus-1 Python]$ xxd -r -p file1.hex > file1
+xxd: file1.hex: No such file or directory
+[t@zeus-1 Python]$ xxd -r -p file1.txt > file1
+[t@zeus-1 Python]$ xxd -r -p file2.txt > file2
+[t@zeus-1 Python]$ openssl dgst -md5 file1 file2
+MD5(file1)= 79054025255fb1a26e4bc422aef54eb4
+MD5(file2)= 79054025255fb1a26e4bc422aef54eb4
+[t@zeus-1 Python]$ openssl dgst -sha256 file1 file2
+SHA256(file1)= 8d12236e5c4ed9f4e790db4d868fd5c399df267e18ff65c1107c328228cffc98
+SHA256(file2)= b9fef2a8fc93b05e7701e97196fda6c4fbeea25ff8e64fdfee7015eca8fa617d
+[tchurch@zeus-1 Python]$ time fastcoll -o file1 file2
+
+-- this didn't work on linux, finally got it to work on my windows laptop, painfully
+
+C:\Users\Name>fastcoll_v1.0.0.5.exe -o file1 file2
+MD5 collision generator v1.5
+by Marc Stevens (http://www.win.tue.nl/hashclash/)
+
+Using output filenames: 'file1' and 'file2'
+Using initial value: 0123456789abcdeffedcba9876543210
+
+Generating first block: .........
+Generating second block: W...........................
+Running time: 4.78 s
+
+-- file1 and file2 renamed to colfile1 and colfile2
+[t@zeus-1 Python]$ xxd -p colfile2
+ae3e0b6399daf4d338d4304a3d75a5b9b96ae0adfc0cf7f1024a79a5088c
+c01239a3ffee702aea4eef01e364c127019fea40d9bbbe025798c059c1c4
+85325eacd030e7f03e292b9f2651860513ea010f90fac9a8938b782e0269
+2777d20bfdbda95f36f87f955c25c2741d7a9cbc5c9fed705df996c2b31b
+ba5db1df41ecc0e2
+[t@zeus-1 Python]$ xxd -p colfile1
+ae3e0b6399daf4d338d4304a3d75a5b9b96ae02dfc0cf7f1024a79a5088c
+c01239a3ffee702aea4eef01e364c1a7009fea40d9bbbe025798c059c144
+85325eacd030e7f03e292b9f2651860513ea010f90fac928938b782e0269
+2777d20bfdbda95f36f87f955c25c2741d7a9c3c5d9fed705df996c2b31b
+ba5db15f41ecc0e2
+
+[t@zeus-1 Python]$ openssl dgst -md5 colfile1 colfile2
+MD5(colfile1)= bd95628b5a4e7ff6ff2accdff320326a
+MD5(colfile2)= bd95628b5a4e7ff6ff2accdff320326a
+[t@zeus-1 Python]$ openssl dgst -sha256 colfile1 colfile2
+SHA256(colfile1)= 6585da57a46fe5c493380e1a30ecac5c407b39a5361ff41d1321a57f3043fe24
+SHA256(colfile2)= 8ead49360d0933bdbc910ee8defe1b2727d7e9441aca0f5d2dc56f2d33246e5b
+[t@zeus-1 Python]$
+

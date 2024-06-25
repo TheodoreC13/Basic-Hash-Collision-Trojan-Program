@@ -1,0 +1,50 @@
+> this file is edited to remove some usernames for github
+
+C:\Users\Name>fastcoll_v1.0.0.5.exe -p prefix -o newcol1 newcol2
+MD5 collision generator v1.5
+by Marc Stevens (http://www.win.tue.nl/hashclash/)
+
+Using output filenames: 'newcol1' and 'newcol2'
+Using prefixfile: 'prefix'
+Using initial value: 6e781cc2f69536e71e34f36531f247ce
+
+Generating first block: ....
+Generating second block: W..
+Running time: 0.632 s
+
+
+
+[t@zeus-1 Python]$ openssl dgst -md5 newcol1 newcol2
+MD5(newcol1)= 1ba42b3162fd5b2c3c7338e36fa44e73
+MD5(newcol2)= 1ba42b3162fd5b2c3c7338e36fa44e73
+[t@zeus-1 Python]$ openssl dgst -sha256 newcol1 newcol2
+SHA256(newcol1)= c43ea3f51f15537d4d4f0a96cd29e11523d50d08e23b178e1ba1a7721b947185
+SHA256(newcol2)= 3db990ff36460b029044cda18f89d33e8900717e66b626c94e022ede7d3f8870
+[tchurch@zeus-1 Python]$
+
+
+74d7b0cbc657d11208817acf79aa366f0632e9c3fbe02ddc583abd815644de09
+ee563703dc623fc49006e02772c104186280ccc729b8dfa06c54b1c90bed6c25
+
+
+[t@zeus-1 Python]$ python2 good.py
+I come in peace.
+[t@zeus-1 Python]$ python2 evil.py
+Prepare to be destroyed!
+[t@zeus-1 Python]$ openssl dgst -md5 good.py evil.py
+MD5(good.py)= 0167dbbdbb8fefb12cf4ce1114a6f44e
+MD5(evil.py)= 0167dbbdbb8fefb12cf4ce1114a6f44e
+[t@zeus-1 Python]$ openssl dgst -sha256 good.py evil.py
+SHA256(good.py)= b576ffa1d12188c20b616923c3810e39a1c7f69808998c8018f060a7dcf933da
+SHA256(evil.py)= 82dadab454663235d38504eee94af19f2f543c9c4fec15a019862baa16c916e6
+[t@zeus-1 Python]$
+
+First we use a prefix file with fastcoll to generate 2 files with a collison. The prefix starts with
+blob = """ then has the hash collision
+after this we attach a suffix with """, giving us blob """......""" which lets us sha256(blob) to 
+get a unique output per file.
+74d7b0cbc657d11208817acf79aa366f0632e9c3fbe02ddc583abd815644de09 -> newcol1
+ee563703dc623fc49006e02772c104186280ccc729b8dfa06c54b1c90bed6c25 -> newcol2
+So the way this work is suffix appends the same code to both files that have a collision, 
+the good file has a certain sha256 for it's blob 74.... and the evil file has ee....
+The code will sha the blob and output text depending on the sha256 of blob. Super cool!
