@@ -1,5 +1,6 @@
 # Basic-Hash-Collision-Trojan-Program
 Basic Trojan program showcasing an md5 hash collision
+Most of the files for this program might not be viewable in github due to the encoding.
 
 This was a bonus assignment for CS 487 Cryptography using Marc Steven's Fastcol v1.0.0.5 (https://www.win.tue.nl/hashclash/) to generate an md5 hash collision.
 this program showcases a basic trojan horse, with only a text line for a payload.
