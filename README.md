@@ -16,13 +16,13 @@ d131dd02c5e6eec4693d9a0698aff95c 2fcab50712467eab4004583eb8fb7f89
 d8823e3156348f5bae6dacd436c919c6 dd53e23487da03fd02396306d248cda0
 e99f33420f577ee8ce54b67080280d1e c69821bcb6a8839396f965ab6ff72a70
 Were converted into binary using
-> xxd -r -p filename.hex > file
+  xxd -r -p filename.hex > file
 then using openssl
-> openssl dgst -md5 file1 file2
-> openssl dgst -sha256 file1 file2
+  openssl dgst -md5 file1 file2
+  openssl dgst -sha256 file1 file2
 the digest of each file was compared to verify that the md5 hashes for these files matches and the sha256 did not match.
 After that fastcol was used to generate the prefix then the suffix was appended to the programs with cat.
-> fastcoll -p prefix -o col1 col2
-> cat col1 suffix > file1.py
-> cat col2 suffix > file2.py
+  fastcoll -p prefix -o col1 col2
+  cat col1 suffix > file1.py
+  cat col2 suffix > file2.py
 The two resulting programs have the same md5 hash, different sha256 hashes and will output different text (behave differently) based on their sha256 hashes.
