@@ -1,6 +1,8 @@
 # Basic-Hash-Collision-Trojan-Program
-Basic Trojan program showcasing an md5 hash collision
-Most of the files for this program might not be viewable in github due to the encoding.
+Basic Trojan program utilizing an md5 hash collision. There are two programs in this repository, named  "good.py" and "evil.py" respectively. Both of these programs have the same md5 hash, different sha256 hashes and will output different text (behave differently) based on their sha256 hashes.
+When run the good program will output "I come in peace." and the evil program will output "Prepare to be destroyed!"
+
+Most of the files for this program might not be viewable in github due to the encoding. 
 
 This was a bonus assignment for CS 487 Cryptography using Marc Steven's Fastcol v1.0.0.5 (https://www.win.tue.nl/hashclash/) to generate an md5 hash collision.
 this program showcases a basic trojan horse, with only a text line for a payload.
@@ -39,5 +41,3 @@ After that fastcol was used to generate the prefix then the suffix was appended 
   
   cat col2 suffix > file2.py
   
-The two resulting programs have the same md5 hash, different sha256 hashes and will output different text (behave differently) based on their sha256 hashes.
-When run the good program will output "I come in peace." and the evil program will output "Prepare to be destroyed!"
