@@ -20,7 +20,7 @@ MD5(newcol2)= 1ba42b3162fd5b2c3c7338e36fa44e73
 [t@zeus-1 Python]$ openssl dgst -sha256 newcol1 newcol2
 SHA256(newcol1)= c43ea3f51f15537d4d4f0a96cd29e11523d50d08e23b178e1ba1a7721b947185
 SHA256(newcol2)= 3db990ff36460b029044cda18f89d33e8900717e66b626c94e022ede7d3f8870
-[tchurch@zeus-1 Python]$
+[t@zeus-1 Python]$
 
 
 74d7b0cbc657d11208817acf79aa366f0632e9c3fbe02ddc583abd815644de09
